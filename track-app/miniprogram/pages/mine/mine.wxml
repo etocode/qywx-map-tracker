@@ -1,0 +1,5 @@
+<view>
+  <image src="{{avatarUrl}}" style="width:88rpx;height:88rpx;border-radius:44rpx;"/>
+  <text>{{nickName}}</text>
+</view>
+<navigator url="/pages/tracks/tracks">我的轨迹</navigator>

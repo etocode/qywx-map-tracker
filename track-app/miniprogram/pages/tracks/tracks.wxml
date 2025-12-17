@@ -1,0 +1,8 @@
+<view wx:for="{{tracks}}" wx:key="index" class="track-item">
+  <view bindtap="toDetail" data-idx="{{index}}">
+    <image src="{{item.avatarUrl}}" style="width:40rpx;height:40rpx;border-radius:20rpx;"/>
+    <text>{{item.nickname}}</text> <text>{{item.createTime | formatTime}}</text>
+    <text>轨迹点数: {{item.points.length}}</text>
+  </view>
+  <button bindtap="deleteTrack" data-idx="{{index}}">删除</button>
+</view>

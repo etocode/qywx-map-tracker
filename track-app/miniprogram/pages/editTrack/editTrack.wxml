@@ -1,0 +1,18 @@
+<map
+  latitude="{{pickerLat}}"
+  longitude="{{pickerLng}}"
+  scale="16"
+  style="width: 100vw; height: 60vh;"
+  markers="{{pickerMarker}}"
+  onmarkerdragend="onPickerDragEnd"
+/>
+<button bindtap="pickPoint">拾取当前指针坐标</button>
+
+<view>
+  <block wx:for="{{tempPoints}}" wx:key="index">
+    <text>{{index+1}}. {{item.latitude}}, {{item.longitude}}</text>
+    <button bindtap="removePoint" data-idx="{{index}}">删除</button>
+  </block>
+</view>
+<button bindtap="addPoint">添加当前位置为新点</button>
+<button type="primary" bindtap="saveTrack">保存（时间强制18:00）</button>
