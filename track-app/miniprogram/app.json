@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/tracks/tracks",
+    "pages/track_detail/track_detail",
+    "pages/editTrack/editTrack",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "navigationBarTitleText": "地图轨迹记录"
+  },
+  "cloud": true
+}

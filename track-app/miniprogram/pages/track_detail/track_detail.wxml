@@ -1,0 +1,15 @@
+<view wx:if="{{track}}">
+  <map
+    latitude="{{track.points[0] && track.points[0].latitude}}" 
+    longitude="{{track.points[0] && track.points[0].longitude}}"
+    scale="15"
+    polyline="{{[{points: track.points, color: '#3498db', width: 4}]}}"
+    style="width:100vw; height:60vh;" />
+  <view wx:for="{{track.points}}" wx:for-item="pt" wx:key="index">
+    <text>{{index + 1}}. {{pt.latitude}},{{pt.longitude}}</text>
+    <image wx:if="{{pt.photoUrl}}" src="{{pt.photoUrl}}" style="width:100px;height:100px" bindtap="previewImg" data-url="{{pt.photoUrl}}"/>
+    <button size="mini" bindtap="editPoint" data-idx="{{index}}">更换照片</button>
+    <button size="mini" bindtap="delPoint" data-idx="{{index}}">删除打点</button>
+  </view>
+  <button open-type="share">分享轨迹</button>
+</view>

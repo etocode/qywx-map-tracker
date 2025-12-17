@@ -1,0 +1,39 @@
+<map latitude="{{latitude}}" longitude="{{longitude}}" scale="16"
+  polyline="{{polyline}}" markers="{{markers}}" style="width:100vw; height:70vh;" />
+
+<view class="tools" style="margin: 10px 0;">
+  <button bindtap="startTracking" wx:if="{{!tracking}}">上班打卡</button>
+  <button bindtap="stopTracking" wx:if="{{tracking}}">下班打卡</button>
+  <button bindtap="openPhotoPunchCardPanel">拍照打点</button>
+</view>
+
+<view wx:if="{{avatarUrl}}" style="margin: 10px 0;">
+  <image src="{{avatarUrl}}" style="width:64rpx;height:64rpx;border-radius:50%;" />
+  {{nickName}}
+</view>    
+
+<!-- 拍照打点弹窗层 -->
+<view wx:if="{{showPhotoPunchCard}}" style="position:fixed;z-index:999;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;">
+  <view style="background:#fff;border-radius:16px;padding:24px 18px;width:600rpx;">
+    <view style="font-weight:600;">自拍照片：</view>
+    <view style="color: red;font-size: 30rpx;">自己与商圈（标志性建筑/店铺门头）的自拍合照</view>
+    <!-- 照片预览和选择 -->
+    <view style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;margin:16px 0;">
+      <block wx:if="{{photoUrl}}">
+        <view style="position:relative;">
+          <image src="{{photoUrl}}" style="width: 240rpx; height: 240rpx; border-radius: 14px;" mode="aspectFit"/>
+          <view bindtap="delPhoto" style="position:absolute;top:0;right:0;width:50rpx;height:50rpx;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;color:red;font-size:32rpx;">✕</view>
+        </view>
+      </block>
+      <block wx:if="{{!photoUrl}}">
+        <view bindtap="choosePhoto" style="width: 240rpx; height: 240rpx;display: flex;align-items: center;justify-content: center;background: #f3f3f3;border-radius: 12px;">
+          <image src="/assets/camera_icon.png" style="width:86rpx;height:86rpx;opacity:.32;" mode="center"/>
+        </view>
+      </block>
+    </view>
+    <view style="margin:12px 0;display:flex;justify-content:space-between;">
+      <button size="mini" bindtap="closePhotoPunchCardPanel">取消</button>
+      <button size="mini" type="primary" bindtap="submitPhotoPunchCard">提交打点</button>
+    </view>
+  </view>
+</view>
