@@ -89,6 +89,8 @@ Page({
 
   // 运动开始：清空points，记录起点，重置终点
   startTracking() {
+    const storedInterval = wx.getStorageSync('setting_locationInterval');
+    const intervalMin = typeof storedInterval === 'number' ? storedInterval : 5;
     this.setData({
       tracking: true,
       points: [],
@@ -103,23 +105,25 @@ Page({
       this._addLocationPoint(res.latitude, res.longitude);
       this.renderMarkers();
     });
-    // 每5分钟自动打点最新位置
-    this.locationTimer = setInterval(() => this.getLocation(), 300000);
+    // 按设置间隔自动打点最新位置
+    this.locationTimer = setInterval(() => this.getLocation(), intervalMin * 60 * 1000);
   },
 
   // 运动结束
   stopTracking() {
     const now = new Date();
-    if (now.getHours() < 18) {
+    const storedHour = wx.getStorageSync('setting_offWorkHour');
+    const offWorkHour = typeof storedHour === 'number' ? storedHour : 18;
+    if (now.getHours() < offWorkHour) {
       let c = this.data.earlyLeaveClickCount + 1;
       if (c === 1) {
-        wx.showToast({ title: '不到18:00不能下班', icon: 'none' });
+        wx.showToast({ title: `不到${offWorkHour}:00不能下班`, icon: 'none' });
       } else if (c <= 20) {
-        wx.showToast({ title: '不到18:00下班为早退', icon: 'none' });
+        wx.showToast({ title: `不到${offWorkHour}:00下班为早退`, icon: 'none' });
       } else if (c === 21) {
         wx.showModal({
           title: '轨迹修改',
-          content: '您已点击21次，进入轨迹修改页面，可手动编辑点位，保存后时间会被设为18:00。',
+          content: `您已点击21次，进入轨迹修改页面，可手动编辑点位，保存后时间会被设为${offWorkHour}:00。`,
           showCancel: false,
           success: () => {
             wx.navigateTo({

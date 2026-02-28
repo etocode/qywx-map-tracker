@@ -1,0 +1,19 @@
+<view style="background:#f5f5f5;min-height:100vh;padding:24rpx 0;">
+  <view class="settings-group">
+    <view class="settings-item">
+      <view>
+        <view class="settings-label">下班打卡时间（点）</view>
+        <view class="settings-hint">默认 18 点，早于此时间结束为早退</view>
+      </view>
+      <input class="settings-input" type="number" value="{{offWorkHour}}" bindinput="onOffWorkHourInput" />
+    </view>
+    <view class="settings-item">
+      <view>
+        <view class="settings-label">自动打点间隔（分钟）</view>
+        <view class="settings-hint">默认每 5 分钟自动记录一次位置</view>
+      </view>
+      <input class="settings-input" type="number" value="{{locationInterval}}" bindinput="onLocationIntervalInput" />
+    </view>
+  </view>
+  <button class="save-btn" type="primary" bindtap="saveSettings">保存设置</button>
+</view>

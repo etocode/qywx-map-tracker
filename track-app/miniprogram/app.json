@@ -4,7 +4,8 @@
     "pages/tracks/tracks",
     "pages/track_detail/track_detail",
     "pages/editTrack/editTrack",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/settings/settings"
   ],
   "window": {
     "navigationBarTitleText": "地图轨迹记录"

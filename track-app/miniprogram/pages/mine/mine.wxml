@@ -3,3 +3,4 @@
   <text>{{nickName}}</text>
 </view>
 <navigator url="/pages/tracks/tracks">我的轨迹</navigator>
+<navigator url="/pages/settings/settings">设置</navigator>
