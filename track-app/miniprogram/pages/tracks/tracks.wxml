@@ -1,7 +1,16 @@
+<wxs module="fmt">
+var formatTime = function(ts) {
+  var d = getDate(ts);
+  var pad = function(n) { return n < 10 ? '0' + n : n + ''; };
+  return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate())
+    + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+};
+module.exports = { formatTime: formatTime };
+</wxs>
 <view wx:for="{{tracks}}" wx:key="index" class="track-item">
   <view bindtap="toDetail" data-idx="{{index}}">
     <image src="{{item.avatarUrl}}" style="width:40rpx;height:40rpx;border-radius:20rpx;"/>
-    <text>{{item.nickname}}</text> <text>{{item.createTime | formatTime}}</text>
+    <text>{{item.nickname}}</text> <text>{{fmt.formatTime(item.createTime)}}</text>
     <text>轨迹点数: {{item.points.length}}</text>
   </view>
   <button bindtap="deleteTrack" data-idx="{{index}}">删除</button>

@@ -8,7 +8,8 @@ exports.main = async (event, context) => {
       points: event.points,
       nickname: event.nickname,
       avatarUrl: event.avatarUrl,
-      createTime: event.createTime
+      createTime: event.createTime,
+      trackName: event.trackName
     }
   })
 }
